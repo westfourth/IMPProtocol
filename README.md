@@ -22,9 +22,9 @@
 
 写`@impprotocol`与写`@implementation`一样。
 
-**注意：**不能调用`@protocol`中未声明的方法，否则编译报错（找不到该方法）。
+**注意**：不能调用`@protocol`中未声明的方法，否则编译报错（找不到该方法）。
 
-**处理：**如果有`@protocol`中未声明的方法，那么将此方法改为C语言函数。
+**处理**：如果有`@protocol`中未声明的方法，那么将此方法改为C语言函数。
 
 ``` objc
 #import "IMPProtocol.h"
