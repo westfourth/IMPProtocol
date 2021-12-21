@@ -7,13 +7,17 @@
 
 #import <objc/runtime.h>
 
+/**
+    给 protocol 添加默认实现。仅实现 required，忽略 optional。
+ */
+
 #define STRSTR(NAME)   #NAME
 
 #define impprotocol(NAME) \
 interface NAME##_NSObject : NSObject <NAME> \
 @end \
 \
-extern void protocol_find_conformed_class(Protocol *proto, Class protoCls); \
+void protocol_find_conformed_class(Protocol *proto, Class protoCls); \
 \
 __attribute__((constructor)) \
 static void NAME##_NSObject_constructor(void) { \
