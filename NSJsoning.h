@@ -6,23 +6,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
+#import "NSModeling.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol NSJsoning <NSObject>
+@protocol NSJsoning <NSModeling>
 
-- (nullable NSDictionary *)toDict;
+- (nullable NSData *)toJsonData;
 
-- (void)fromDict:(NSDictionary *)dict;
+- (nullable NSString *)toJsonString;
 
-- (nullable NSData *)toJSONData;
+- (void)fromJsonData:(NSData *)data;
 
-- (void)fromJSONData:(NSData *)data;
+- (void)fromJsonString:(NSString *)string;
 
-- (nullable NSString *)toJSONString;
-
-- (void)fromJSONString:(NSString *)string;
+- (void)fromJsonFile:(NSString *)filename inBundle:(nullable NSBundle *)bundle;
 
 @end
 
@@ -32,9 +30,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (NSJsoning)
 
-- (nullable NSArray *)modelsToArray:(Class)cls;
+- (nullable NSData *)toJsonData:(Class)cls;
 
-- (nullable NSArray *)arrayToModels:(Class)cls;
+- (nullable NSString *)toJsonString:(Class)cls;
+
+- (nullable NSArray *)fromJsonData:(NSData *)data withClass:(Class)cls;
+
+- (nullable NSArray *)fromJsonString:(NSString *)string withClass:(Class)cls;
+
+- (nullable NSArray *)fromJsonFile:(NSString *)filename inBundle:(nullable NSBundle *)bundle withClass:(Class)cls;
 
 @end
 

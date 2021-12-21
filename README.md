@@ -4,6 +4,14 @@
 
 也可有自定义实现，**优先级**：自定义实现 > 默认实现。
 
+## 原理
+
+* `@impprotocol`会构建一个类。
+* `__attribute__((constructor))`修饰的函数在所有类的`+load`方法执行后、`main()`方法执行前调用。
+* 找到所有采用该协议的类，并将协议中的方法（包括协议继承的方法）添加到该类中。
+
+
+
 ## 使用
 
 ### 协议
@@ -81,6 +89,6 @@ NSDictionary *dict = [t toDict];
 
 ## 扩展
 
-默认提供了`NSCopying`、`NSCoding`、`NSJsoning`，可以自行扩展。
+默认提供了`NSCopying`、`NSCoding`、`NSModeling`、`NSJsoning`、`NSPlisting`，可以自行扩展。
 
 
